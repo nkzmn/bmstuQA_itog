@@ -1,0 +1,43 @@
+name: Run API Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run API tests
+      run: |
+        pytest tests --junit-xml=reports/results.xml
+
+    - name: Send Test Results to TestIT
+      run: |
+        testit results import \
+          --url https://team-bi85.testit.software \
+          --project-id 0195fc89-1f87-7423-b2df-f156dc859bf9 \
+          --configuration-id 0195fc89-1fb4-74ae-b403-4d1bef41939a \
+          --testrun-name "Pytest API test run" \
+          --results reports \
+          --token ${{ secrets.TMS_TOKEN }}
+      env:
+        TMS_TOKEN: ${{ secrets.TMS_TOKEN }}
