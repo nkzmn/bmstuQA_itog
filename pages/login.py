@@ -1,8 +1,8 @@
 import logging
 
-from locators.add_user_locators import UserLocators
-from locators.login_locators import LoginLocators
-from pages.base_page import BasePage
+from locators.loc_add_user import UserLocators
+from locators.loc_admin import LoginLocators
+from pages.base import BasePage
 
 logger = logging.getLogger("logger_sel-api")
 
@@ -57,6 +57,6 @@ class AddLoginPage(BasePage):
             '3': UserLocators.DATE,
             '4': UserLocators.STATUS,
         }
-        self.cleaner(locators)
+        self.clear_form_values(locators)
 
         logger.info('Clean form')

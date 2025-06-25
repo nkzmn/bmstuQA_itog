@@ -67,7 +67,7 @@ class BasePage:
         else:
             return False
 
-    def cleaner(self, locators, wait_time=10):
+    def clear_form_values(self, locators, wait_time=10):
         self._find_element(locators["0"], wait_time).clear()
         self._find_element(locators["1"], wait_time).clear()
         self._find_element(locators["2"], wait_time).clear()
