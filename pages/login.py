@@ -6,12 +6,12 @@ from pages.base import BasePage
 
 logger = logging.getLogger("logger_sel-api")
 
+
 class AddLoginPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
     def add_login_password(self, data: dict):
-
         # Заполняем поле по локатору
         self.fill(value=data["login"], locator=LoginLocators.LOGIN)
         self.fill(value=data["password"], locator=LoginLocators.PASSWORD)
@@ -26,9 +26,7 @@ class AddLoginPage(BasePage):
             logger.info('OK authentication!')
             self.click(locator=LoginLocators.TO_ADD_USER)
 
-
     def add_user_info(self, data: dict):
-
         # Заполняем поле по локатору
         self.fill(value=data["name"], locator=UserLocators.NAME)
         self.fill(value=data["age"], locator=UserLocators.AGE)
@@ -46,11 +44,10 @@ class AddLoginPage(BasePage):
         self.click(locator=UserLocators.SAVE_BUTTON)
 
     def get_add_result(self):
-
         return self.text(UserLocators.MESSAGE, UserLocators.ERROR_NAME, UserLocators.ERROR_AGE)
 
     def clean_form(self):
-        locators={
+        locators = {
             '0': UserLocators.NAME,
             '1': UserLocators.AGE,
             '2': UserLocators.GENDER,

@@ -33,7 +33,7 @@ jobs:
     - name: Send Test Results to TestIT
       run: |
         testit results import \
-          --url https://team-bi85.testit.software \
+          --url https://team-3h0k.testit.software \
           --project-id 0195fc89-1f87-7423-b2df-f156dc859bf9 \
           --configuration-id 0195fc89-1fb4-74ae-b403-4d1bef41939a \
           --testrun-name "Pytest API test run" \
