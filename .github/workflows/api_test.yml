@@ -28,7 +28,7 @@ jobs:
 
     - name: Run API tests
       run: |
-        pytest tests --junit-xml=reports/results.xml
+        python3 -m pytest tests/tests.py --junit-xml=reports/results.xml
 
     - name: Send Test Results to TestIT
       run: |
